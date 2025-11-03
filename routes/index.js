@@ -14,6 +14,7 @@ const {
   validateCart,
   validateTransaction,
   validateSales,
+  validateProfit,
 } = require("../utils/validators");
 const {
   handleValidationErrors,
@@ -30,6 +31,7 @@ const customerController = require("../controllers/CustomerController");
 const cartController = require("../controllers/CartController");
 const transactionController = require('../controllers/TransactionController');
 const salesController = require('../controllers/SalesController');
+const profitController = require('../controllers/ProfitController');
 
 // Define routes
 const routes = [
@@ -227,6 +229,11 @@ const routes = [
     // Sales routes
   { method: 'get', path: '/sales', middlewares: [verifyToken, validateSales, handleValidationErrors], handler: salesController.filterSales },
   { method: 'get', path: '/sales/export', middlewares: [verifyToken, validateSales, handleValidationErrors], handler: salesController.exportSales },
+
+
+    // Profit routes
+  { method: 'get', path: '/profits', middlewares: [verifyToken, validateProfit, handleValidationErrors], handler: profitController.filterProfit },
+  { method: 'get', path: '/profits/export', middlewares: [verifyToken, validateProfit, handleValidationErrors], handler: profitController.exportProfit },
 
 ];
 
